@@ -7,6 +7,8 @@ body {
     background-color: #121212;
     color: #ffffff;
     text-align: center;
+    overflow: hidden;
+    position: relative;
 }
 
 .header {
@@ -59,6 +61,27 @@ button:hover {
     padding: 20px;
     background: #222;
     font-size: 1rem;
+}
 
-    
+/* Floating Symbols Animation */
+.floating-symbol {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 1;
+    animation: floatUp 5s linear infinite, fadeOut 5s linear forwards;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh);
+    }
+    to {
+        transform: translateY(-10vh);
+    }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 0.5; }
+    100% { opacity: 0; }
 }
