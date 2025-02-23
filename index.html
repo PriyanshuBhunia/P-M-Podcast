@@ -15,6 +15,8 @@
             background-color: #121212;
             color: #bbacac;
             text-align: center;
+            overflow: hidden;
+            position: relative;
         }
 
         .header {
@@ -77,6 +79,48 @@
             border-radius: 10px;
         }
 
+        .footer {
+            padding: 20px;
+            background: #222;
+            font-size: 1rem;
+        }
+
+        /* Floating Symbols Animation */
+        .floating-symbol {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 1;
+            animation: floatUp 5s linear infinite, fadeOut 5s linear forwards;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh);
+            }
+            to {
+                transform: translateY(-10vh);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
+
+        /* Shiny Cursor Effect */
+        .shiny-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255, 255, 0, 1) 0%, rgba(255, 166, 0, 0.5) 50%, rgba(255, 166, 0, 0) 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.8;
+            transition: transform 0.1s ease-out;
+        }
+
         button {
             margin-top: 15px;
             padding: 12px 25px;
@@ -95,11 +139,6 @@
             transform: scale(1.05);
         }
 
-        .footer {
-            padding: 20px;
-            background: #222;
-            font-size: 1rem;
-        }
     </style>
 </head>
 <body>
@@ -118,5 +157,39 @@
     </div>
     
     <div class="footer">&copy; 2025 P&M Podcast. All Rights Reserved.</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function createFloatingSymbol() {
+                const symbols = ['🎵', '🎧', '⭐', '🎤', '🎼', '👗', '👠', '🕶️', '👜', '💄'];
+                const symbol = document.createElement('div');
+                symbol.classList.add('floating-symbol');
+                symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                symbol.style.left = Math.random() * 100 + 'vw';
+                symbol.style.top = Math.random() * 100 + 'vh';
+                document.body.appendChild(symbol);
+                setTimeout(() => symbol.remove(), 5000);
+            }
+            setInterval(createFloatingSymbol, 1000);
+
+            // Shiny Cursor Effect
+            const cursor = document.createElement("div");
+            cursor.classList.add("shiny-cursor");
+            document.body.appendChild(cursor);
+
+            document.addEventListener("mousemove", (e) => {
+                cursor.style.left = `${e.pageX}px`;
+                cursor.style.top = `${e.pageY}px`;
+            });
+
+            document.addEventListener("mouseover", () => {
+                cursor.style.transform = "scale(1.5)";
+            });
+
+            document.addEventListener("mouseout", () => {
+                cursor.style.transform = "scale(1)";
+            });
+        });
+    </script>
 </body>
 </html>
