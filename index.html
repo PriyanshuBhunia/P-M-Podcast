@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>P&M Podcast</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
         
@@ -108,19 +107,6 @@
             100% { opacity: 0; }
         }
 
-        /* Shiny Cursor Effect */
-        .shiny-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(255, 255, 0, 1) 0%, rgba(255, 166, 0, 0.5) 50%, rgba(255, 166, 0, 0) 100%);
-            border-radius: 50%;
-            pointer-events: none;
-            mix-blend-mode: screen;
-            opacity: 0.8;
-            transition: transform 0.1s ease-out;
-        }
-
         button {
             margin-top: 15px;
             padding: 12px 25px;
@@ -171,24 +157,6 @@
                 setTimeout(() => symbol.remove(), 5000);
             }
             setInterval(createFloatingSymbol, 1000);
-
-            // Shiny Cursor Effect
-            const cursor = document.createElement("div");
-            cursor.classList.add("shiny-cursor");
-            document.body.appendChild(cursor);
-
-            document.addEventListener("mousemove", (e) => {
-                cursor.style.left = `${e.pageX}px`;
-                cursor.style.top = `${e.pageY}px`;
-            });
-
-            document.addEventListener("mouseover", () => {
-                cursor.style.transform = "scale(1.5)";
-            });
-
-            document.addEventListener("mouseout", () => {
-                cursor.style.transform = "scale(1)";
-            });
         });
     </script>
 </body>
